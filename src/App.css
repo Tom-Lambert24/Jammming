@@ -45,6 +45,7 @@ h1 {
 
 #search {
   text-align: center;
+  margin-top: 4%;
 }
 
 #searchInput {
@@ -52,8 +53,22 @@ h1 {
 }
 
 #searchResults {
-  border: 2px solid black;
-  margin: 5% 10%;
+  border: 0.1rem solid black;
+  margin: 2% 2% 5% 10%;
   text-align: center;
-  width: 45%;
+  width: 40%;
+  display: inline-block;
+}
+
+#playlistContainer {
+  border: 0.1rem solid black;
+  margin: 2% 10% 5% 2%;
+  width: 31%;
+  display: inline-block;
+  padding: 1.6rem;
+}
+
+button {
+  margin: 0 auto;
+  display: block;
 }
