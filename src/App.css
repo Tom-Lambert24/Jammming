@@ -50,3 +50,10 @@ h1 {
 #searchInput {
   margin-bottom: 10px;
 }
+
+#searchResults {
+  border: 2px solid black;
+  margin: 5% 10%;
+  text-align: center;
+  width: 45%;
+}
