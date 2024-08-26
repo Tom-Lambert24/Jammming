@@ -18,12 +18,10 @@ function App() {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: `grant_type=client_credentials&client_id=${clientID}&client_secret=${clientSecret}`
-      }).then(response => response.json()).catch(console.log("unfullfilled")).then(data => {
+      }).then(response => response.json()).then(data => {
         setToken(data.access_token)
       })
   }, [])
-
-  console.log(token)
 
   return (
     <>
@@ -32,7 +30,7 @@ function App() {
       </header>
       <body>
         <SearchBar />
-        <SearchResults />
+        <SearchResults token={token} />
         <Playlist />
       </body>
     </>

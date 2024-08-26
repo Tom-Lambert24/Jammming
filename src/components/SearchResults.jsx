@@ -1,6 +1,9 @@
 import React from "react";
 
-export function SearchResults() {
+export function SearchResults(props) {
+
+    
+
 
     return (
         <div id="searchResults">
