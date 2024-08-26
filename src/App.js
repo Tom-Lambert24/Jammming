@@ -29,7 +29,7 @@ function App() {
         <h1>Jammming</h1>
       </header>
       <body>
-        <SearchBar />
+        <SearchBar token={token} />
         <SearchResults token={token} />
         <Playlist />
       </body>
