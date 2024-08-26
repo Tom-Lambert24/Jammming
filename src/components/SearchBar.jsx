@@ -1,13 +1,17 @@
 import React from 'react'
 
-export function searchBar() {
+export function SearchBar() {
 
 
 
 
     return (
         <>
-            <input type="text" />
+            <div id="search">
+                <input id="searchInput" type="text" />
+                <br></br>
+                <button>Search</button>
+            </div>
         </>
     )
 }

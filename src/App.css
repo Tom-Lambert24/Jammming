@@ -42,3 +42,11 @@ h1 {
   background-color: navy;
   color: white;
 }
+
+#search {
+  text-align: center;
+}
+
+#searchInput {
+  margin-bottom: 10px;
+}
