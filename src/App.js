@@ -9,7 +9,8 @@ function App() {
   const clientSecret = "86e0c43c5ed64fedaba801f0a43d043e"
 
   const [token, setToken] = useState('')
-  const [resultsArray, setResultsArray] = useState({})
+  const [resultsObject, setResultsObject] = useState({})
+
 
   useEffect(() => {
     fetch('https://accounts.spotify.com/api/token',
@@ -31,7 +32,6 @@ function App() {
       </header>
       <body>
         <SearchBar token={token} />
-        <SearchResults resultsArray={resultsArray} />
         <Playlist />
       </body>
     </>
