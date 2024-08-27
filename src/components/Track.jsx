@@ -13,38 +13,29 @@ export function Track(props) {
         }
     }, [resultsObject])
 
+    //generating the render code
+    var renderCode = []
 
 
-    
+    if (namesArray[0]) {
+        for (let i = 0; i < 5; i++) {
+            renderCode.push(
+                <li>
+                    <p>{namesArray[i]}</p>
+                    <button id={"button" + i} >+</button>
+                    <p>{artistArray[i]}</p>
+                </li>
+            )
+        }
+    }
+
+
+    console.log(renderCode)
 
     return (
         <>
             <ul>
-                <li>
-                    <p>{namesArray[0]}</p>
-                    <button id="button0" >+</button>
-                    <p>{artistArray[0]}</p>
-                </li>
-                <li>
-                    <p>{namesArray[1]}</p>
-                    <button id="button1">+</button>
-                    <p>{artistArray[1]}</p>
-                </li>
-                <li>
-                    <p>{namesArray[2]}</p>
-                    <button id="button2">+</button>
-                    <p>{artistArray[2]}</p>
-                </li>
-                <li>
-                    <p>{namesArray[3]}</p>
-                    <button id="button3">+</button>
-                    <p>{artistArray[3]}</p>
-                </li>
-                <li>
-                    <p>{namesArray[4]}</p>
-                    <button id="button4">+</button>
-                    <p>{artistArray[4]}</p>
-                </li>
+                {renderCode}
             </ul>
         </>
     )
