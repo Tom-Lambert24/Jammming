@@ -3,7 +3,7 @@ import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
 import { Playlist } from './components/Playlist';
 import React, { useState, useEffect } from 'react';
-import { Tracklist } from './components/Tracklist';
+import { Track } from './components/Track';
 
 function App() {
   const clientID = "36e3f70fe51742af911d9af20b443a96"
@@ -41,7 +41,7 @@ function App() {
           <SearchBar token={token} recieveSearch={handleDataFromSearchBar} />
           <div id="searchResults">
             <SearchResults />
-            <Tracklist />
+            <Track resultsObject={resultsObject} />
           </div>
           <Playlist />
         </>
