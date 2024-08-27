@@ -3,6 +3,7 @@ import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
 import { Playlist } from './components/Playlist';
 import React, { useState, useEffect } from 'react';
+import { Tracklist } from './components/Tracklist';
 
 function App() {
   const clientID = "36e3f70fe51742af911d9af20b443a96"
@@ -36,9 +37,14 @@ function App() {
         <h1>Jammming</h1>
       </header>
       <body>
-        <SearchBar token={token} recieveSearch={handleDataFromSearchBar}/>
-        <SearchResults />
-        <Playlist />
+        <>
+          <SearchBar token={token} recieveSearch={handleDataFromSearchBar} />
+          <div id="searchResults">
+            <SearchResults />
+            <Tracklist />
+          </div>
+          <Playlist />
+        </>
       </body>
     </>
   );
