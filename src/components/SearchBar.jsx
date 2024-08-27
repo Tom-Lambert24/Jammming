@@ -4,12 +4,12 @@ import { SearchResults } from './SearchResults.jsx'
 
 export function SearchBar(props) {
     
-    var [currentSearch, setCurrentSearch] = useState({})
+    var [currentSearch, setCurrentSearch] = useState([])
 
     async function changeHandler(e) {
 
         var search = {}
-
+        
         await fetch(`https://api.spotify.com/v1/search?q=${e.target.value}&type=track&limit=5`, {
             method: 'GET',
             headers: {
@@ -30,9 +30,15 @@ export function SearchBar(props) {
                 setCurrentSearch(data.tracks.items)
         })
 
-        if (e.target.value.length > 2 && currentSearch[0]) {
-            console.log(currentSearch[0].name)
+        if (currentSearch[0]) {
+            const currentSearchArrayNames = currentSearch.map(search => {
+                return search.name
+            })
         }
+        //send data to app.js
+
+        props.recieveSearch(currentSearch)
+
     }
     
     return (
@@ -41,10 +47,6 @@ export function SearchBar(props) {
                 <input id="searchInput" type="text" onChange={e => { changeHandler(e) }} />
                 <br></br>
                 <button>Search</button>
-            </div>
-            <div id="searchResults">
-                <h2>Results</h2>
-                <p></p>
             </div>
         </>
     )

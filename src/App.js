@@ -25,13 +25,19 @@ function App() {
       })
   }, [])
 
+  function handleDataFromSearchBar(data) {
+    setResultsObject(data)
+    console.log(resultsObject)
+  }
+
   return (
     <>
       <header>
         <h1>Jammming</h1>
       </header>
       <body>
-        <SearchBar token={token} />
+        <SearchBar token={token} recieveSearch={handleDataFromSearchBar}/>
+        <SearchResults />
         <Playlist />
       </body>
     </>
