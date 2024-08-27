@@ -31,22 +31,27 @@ export function Track(props) {
             <ul>
                 <li>
                     <p>{namesArray[0]}</p>
+                    <button>+</button>
                     <p>{artistArray[0]}</p>
                 </li>
                 <li>
                     <p>{namesArray[1]}</p>
+                    <button>+</button>
                     <p>{artistArray[1]}</p>
                 </li>
                 <li>
                     <p>{namesArray[2]}</p>
+                    <button>+</button>
                     <p>{artistArray[2]}</p>
                 </li>
                 <li>
                     <p>{namesArray[3]}</p>
+                    <button>+</button>
                     <p>{artistArray[3]}</p>
                 </li>
                 <li>
                     <p>{namesArray[4]}</p>
+                    <button>+</button>
                     <p>{artistArray[4]}</p>
                 </li>
             </ul>

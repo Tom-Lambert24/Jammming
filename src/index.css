@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+li {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  border-top: 2px solid black;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin: 0;
+}
+
+p {
+  display: block;
+  margin: 0.1rem 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  margin-top: 0.3rem;
+}

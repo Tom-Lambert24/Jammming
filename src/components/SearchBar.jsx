@@ -17,7 +17,7 @@ export function SearchBar(props) {
             }
         }
         ).then(response => response.json()).then(data => {
-            search = data.tracks.href
+                search = data.tracks.href
         })
 
         await fetch(search, {
@@ -41,9 +41,9 @@ export function SearchBar(props) {
     return (
         <>
             <div id="search">
-                <input id="searchInput" type="text" onChange={e => { changeHandler(e) }} />
+                <label>Song Search</label>
                 <br></br>
-                <button>Search</button>
+                <input id="searchInput" type="text" onChange={e => { changeHandler(e) }} />
             </div>
         </>
     )
