@@ -7,51 +7,42 @@ export function Track(props) {
 
 
     useEffect(() => {
-        if (resultsObject[0]) {
-            setNamesArray([
-                resultsObject[0].name,
-                resultsObject[1].name,
-                resultsObject[2].name,
-                resultsObject[3].name,
-                resultsObject[4].name
-            ])
-
-            setArtistArray([
-                resultsObject[0].artists[0].name,
-                resultsObject[1].artists[0].name,
-                resultsObject[2].artists[0].name,
-                resultsObject[3].artists[0].name,
-                resultsObject[4].artists[0].name
-            ])
+        if (resultsObject.length >= 5) {
+            setNamesArray(resultsObject.slice(0, 5).map(result => result.name));
+            setArtistArray(resultsObject.slice(0, 5).map(result => result.artists[0].name));
         }
     }, [resultsObject])
+
+
+
+    
 
     return (
         <>
             <ul>
                 <li>
                     <p>{namesArray[0]}</p>
-                    <button>+</button>
+                    <button id="button0" >+</button>
                     <p>{artistArray[0]}</p>
                 </li>
                 <li>
                     <p>{namesArray[1]}</p>
-                    <button>+</button>
+                    <button id="button1">+</button>
                     <p>{artistArray[1]}</p>
                 </li>
                 <li>
                     <p>{namesArray[2]}</p>
-                    <button>+</button>
+                    <button id="button2">+</button>
                     <p>{artistArray[2]}</p>
                 </li>
                 <li>
                     <p>{namesArray[3]}</p>
-                    <button>+</button>
+                    <button id="button3">+</button>
                     <p>{artistArray[3]}</p>
                 </li>
                 <li>
                     <p>{namesArray[4]}</p>
-                    <button>+</button>
+                    <button id="button4">+</button>
                     <p>{artistArray[4]}</p>
                 </li>
             </ul>

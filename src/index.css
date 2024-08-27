@@ -34,3 +34,8 @@ ul {
 input {
   margin-top: 0.3rem;
 }
+
+li button {
+  position: relative;
+  top: 0.5rem;
+}
