@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import App from '../../src/App.js'
 import { SearchResults } from './SearchResults.jsx'
 
 export function SearchBar(props) {
-    
+
     var [currentSearch, setCurrentSearch] = useState([])
 
     async function changeHandler(e) {
 
         var search = {}
-        
+
         await fetch(`https://api.spotify.com/v1/search?q=${e.target.value}&type=track&limit=5`, {
             method: 'GET',
             headers: {
@@ -20,7 +20,7 @@ export function SearchBar(props) {
             search = data.tracks.href
         })
 
-        fetch(search, {
+        await fetch(search, {
             method: 'GET',
             headers: {
                 'Authorization': ' Bearer ' + props.token
@@ -28,19 +28,16 @@ export function SearchBar(props) {
         }).then(response => response.json()).then(
             data => {
                 setCurrentSearch(data.tracks.items)
-        })
-
-        if (currentSearch[0]) {
-            const currentSearchArrayNames = currentSearch.map(search => {
-                return search.name
             })
-        }
-        //send data to app.js
-
-        props.recieveSearch(currentSearch)
 
     }
-    
+
+    //send data to App.js
+
+    useEffect(() => {
+        props.recieveSearch(currentSearch)
+    }, [currentSearch])
+
     return (
         <>
             <div id="search">

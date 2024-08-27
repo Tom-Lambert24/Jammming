@@ -11,6 +11,8 @@ function App() {
 
   const [token, setToken] = useState('')
   const [resultsObject, setResultsObject] = useState({})
+  console.log(resultsObject)
+  
 
 
   useEffect(() => {
@@ -28,7 +30,6 @@ function App() {
 
   function handleDataFromSearchBar(data) {
     setResultsObject(data)
-    console.log(resultsObject)
   }
 
   return (
