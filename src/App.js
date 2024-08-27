@@ -12,7 +12,7 @@ function App() {
   const [token, setToken] = useState('')
   const [resultsObject, setResultsObject] = useState({})
   console.log(resultsObject)
-  
+
 
 
   useEffect(() => {
@@ -40,11 +40,13 @@ function App() {
       <body>
         <>
           <SearchBar token={token} recieveSearch={handleDataFromSearchBar} />
-          <div id="searchResults">
-            <SearchResults />
-            <Track resultsObject={resultsObject} />
-          </div>
-          <Playlist />
+          <section id="listsGrid">
+            <div id="searchResults">
+              <SearchResults />
+              <Track resultsObject={resultsObject} />
+            </div>
+            <Playlist />
+          </section>
         </>
       </body>
     </>
