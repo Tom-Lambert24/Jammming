@@ -9,7 +9,7 @@ export function SearchBar(props) {
     async function changeHandler(e) {
 
         var search = {}
-
+        if (e.target.value) {
         await fetch(`https://api.spotify.com/v1/search?q=${e.target.value}&type=track&limit=5`, {
             method: 'GET',
             headers: {
@@ -29,6 +29,7 @@ export function SearchBar(props) {
             data => {
                 setCurrentSearch(data.tracks.items)
             })
+        }
 
     }
 
