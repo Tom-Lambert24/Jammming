@@ -4,6 +4,7 @@ export function Track(props) {
     const resultsObject = props.resultsObject
     const [namesArray, setNamesArray] = useState([])
     const [artistArray, setArtistArray] = useState([])
+    const [songToAdd, setSongToAdd] = useState([])
 
 
     useEffect(() => {
@@ -13,26 +14,31 @@ export function Track(props) {
         }
     }, [resultsObject])
 
-    //generating the render code
-    var renderCode = []
+   
 
+
+    function handleButtonClick(button) {
+        setSongToAdd([namesArray[button], artistArray[button]])
+    }
+
+    useEffect(() => {
+        props.recieveAddedSong(songToAdd)
+    }, [songToAdd])
+
+     //generating the render code
+    var renderCode = []
 
     if (namesArray[0]) {
         for (let i = 0; i < 5; i++) {
             renderCode.push(
-                <li>
+                <li key={"list"+i}>
                     <p>{namesArray[i]}</p>
-                    <button id={"button" + i} >+</button>
+                    <button id={"button" + i} onClick={() => handleButtonClick(i)}>+</button>
                     <p>{artistArray[i]}</p>
                 </li>
             )
         }
     }
-
-    
-
-
-    console.log(renderCode)
 
     return (
         <>

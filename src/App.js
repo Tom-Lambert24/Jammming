@@ -11,9 +11,7 @@ function App() {
 
   const [token, setToken] = useState('')
   const [resultsObject, setResultsObject] = useState({})
-  console.log(resultsObject)
-
-
+  const [songAdd, setSongAdd] = useState('')
 
   useEffect(() => {
     fetch('https://accounts.spotify.com/api/token',
@@ -32,6 +30,10 @@ function App() {
     setResultsObject(data)
   }
 
+  function handleDataFromTrack(data) {
+    setSongAdd(data)
+  }
+
   return (
     <>
       <header>
@@ -43,9 +45,9 @@ function App() {
           <section id="listsGrid">
             <div id="searchResults">
               <SearchResults />
-              <Track resultsObject={resultsObject} />
+              <Track resultsObject={resultsObject} recieveAddedSong={handleDataFromTrack} />
             </div>
-            <Playlist />
+            <Playlist songAdd={songAdd} />
           </section>
         </>
       </body>
