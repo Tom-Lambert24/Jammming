@@ -1,6 +1,5 @@
 import './App.css';
 import { SearchBar } from './components/SearchBar';
-import { SearchResults } from './components/SearchResults';
 import { Playlist } from './components/Playlist';
 import React, { useState, useEffect } from 'react';
 import { Track } from './components/Track';
@@ -42,7 +41,7 @@ function App() {
           <SearchBar token={token} recieveSearch={handleDataFromSearchBar} />
           <section id="listsGrid">
             <div id="searchResults">
-              <SearchResults />
+              <h2>Results</h2>
               <Track resultsObject={resultsObject} recieveAddedSong={handleDataFromTrack} />
             </div>
             <Playlist songAdd={songAdd} token={token}/>

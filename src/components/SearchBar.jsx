@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import App from '../../src/App.js'
-import { SearchResults } from './SearchResults.jsx'
 
 export function SearchBar(props) {
 

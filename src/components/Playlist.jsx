@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Track } from "./Track";
-import App from "../App";
 
 
 export function Playlist(props) {
