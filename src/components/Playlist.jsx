@@ -8,7 +8,6 @@ export function Playlist(props) {
     const [songToAdd, setSongToAdd] = useState('')
     const [songList, setSongList] = useState([])
     const [playlistRender, setPlaylistRender] = useState([])
-    const [playlistID, setPlaylistID] = useState('')
 
     useEffect(() => {
         setSongToAdd(props.songAdd)
@@ -20,7 +19,7 @@ export function Playlist(props) {
         
     }, [props.songAdd])
 
-    
+
 
     useEffect(() => {
         setPlaylistRender([])
@@ -38,11 +37,23 @@ export function Playlist(props) {
         }
     }, [songList])
 
+    //get uris list
+    function getUriList() {
+        var uriList = []
 
+        for (let i = 0; i < songList.length; i++) {
+            uriList.push(songList[i][2])
+        }
+
+        return uriList
+    }
+
+    console.log(JSON.stringify(getUriList()))
 
     //save playlist to spotify
 
     async function handleSave() {
+        var playlistID = ''
         await fetch('https://api.spotify.com/v1/users/tomlambert1997/playlists', {
             method: "POST",
             headers: {
@@ -55,9 +66,10 @@ export function Playlist(props) {
                 'public': false,
             })
         }).then(response => response.json()).then(data => {
-            setPlaylistID(data.id)
+            playlistID = data.id
         })
 
+        console.log(playlistID)
         fetch('https://api.spotify.com/v1/playlists/' + playlistID + '/tracks', {
             method: 'POST',
             headers: {
@@ -65,11 +77,12 @@ export function Playlist(props) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                "uris": [
-
-                ]
+                "uris":getUriList(),
+                'position' : 0,
             })
-        })
+        }).then(response => response.json()).then(data => console.log(data))
+
+
     }
 
     return (
