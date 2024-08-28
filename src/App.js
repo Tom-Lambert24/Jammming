@@ -15,13 +15,10 @@ function App() {
   const [resultsObject, setResultsObject] = useState({})
   const [songAdd, setSongAdd] = useState('')
 
-
   useEffect(() => {
     const href = window.location.href
-    
-    setToken(href.slice(36, 224))
-    console.log(token)
-    
+
+    setToken(href.substring(href.indexOf('=') + 1, href.indexOf('&')))
   })
 
   function handleDataFromSearchBar(data) {
@@ -36,7 +33,7 @@ function App() {
     <>
       <header>
         <h1>Jammming</h1>
-        <a href={`${authEndpoint}?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=${responseType}`}>
+        <a href={`${authEndpoint}?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=${responseType}&scope=playlist-read-private%20playlist-modify-public%20playlist-modify-private`}>
           Login to Spotify
         </a>
       </header>
