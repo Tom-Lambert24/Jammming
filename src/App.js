@@ -7,24 +7,22 @@ import { Track } from './components/Track';
 
 function App() {
   const clientID = "36e3f70fe51742af911d9af20b443a96"
-  const clientSecret = "86e0c43c5ed64fedaba801f0a43d043e"
+  const redirectURI = "http://localhost:3000/"
+  const responseType = "token"
+  const authEndpoint = "https://accounts.spotify.com/authorize"
 
   const [token, setToken] = useState('')
   const [resultsObject, setResultsObject] = useState({})
   const [songAdd, setSongAdd] = useState('')
 
+
   useEffect(() => {
-    fetch('https://accounts.spotify.com/api/token',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `grant_type=client_credentials&client_id=${clientID}&client_secret=${clientSecret}`
-      }).then(response => response.json()).then(data => {
-        setToken(data.access_token)
-      })
-  }, [])
+    const href = window.location.href
+    
+    setToken(href.slice(36, 224))
+    console.log(token)
+    
+  })
 
   function handleDataFromSearchBar(data) {
     setResultsObject(data)
@@ -38,6 +36,9 @@ function App() {
     <>
       <header>
         <h1>Jammming</h1>
+        <a href={`${authEndpoint}?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=${responseType}`}>
+          Login to Spotify
+        </a>
       </header>
       <body>
         <>
@@ -47,7 +48,7 @@ function App() {
               <SearchResults />
               <Track resultsObject={resultsObject} recieveAddedSong={handleDataFromTrack} />
             </div>
-            <Playlist songAdd={songAdd} />
+            <Playlist songAdd={songAdd} token={token}/>
           </section>
         </>
       </body>
