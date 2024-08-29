@@ -52,6 +52,10 @@ export function Playlist(props) {
         var playlistID = ''
         var playlistName = document.getElementById('playlistNameInput').value
 
+        if (!playlistName) {
+            playlistName = 'NewJammmerPlaylist'
+        }
+
         await fetch('https://api.spotify.com/v1/users/tomlambert1997/playlists', {
             method: "POST",
             headers: {

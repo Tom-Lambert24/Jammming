@@ -7,26 +7,31 @@ export function SearchBar(props) {
     async function changeHandler(e) {
 
         var search = {}
-        if (e.target.value) {
-        await fetch(`https://api.spotify.com/v1/search?q=${e.target.value}&type=track&limit=5`, {
-            method: 'GET',
-            headers: {
-                'Authorization': ' Bearer ' + props.token
-            }
-        }
-        ).then(response => response.json()).then(data => {
-                search = data.tracks.href
-        })
+        if (props.token) {
+            if (e.target.value) {
+                await fetch(`https://api.spotify.com/v1/search?q=${e.target.value}&type=track&limit=5`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': ' Bearer ' + props.token
+                    }
+                }
+                ).then(response => response.json()).then(data => {
+                    search = data.tracks.href
+                })
 
-        await fetch(search, {
-            method: 'GET',
-            headers: {
-                'Authorization': ' Bearer ' + props.token
+                await fetch(search, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': ' Bearer ' + props.token
+                    }
+                }).then(response => response.json()).then(
+                    data => {
+                        setCurrentSearch(data.tracks.items)
+                    })
             }
-        }).then(response => response.json()).then(
-            data => {
-                setCurrentSearch(data.tracks.items)
-            })
+        } else {
+            alert('Please login first...')
+            
         }
 
     }
