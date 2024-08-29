@@ -12,9 +12,9 @@ export function Playlist(props) {
 
         if (props.songAdd.length === 3) {
             setSongList(prev => [...prev, props.songAdd])
-            
+
         }
-        
+
     }, [props.songAdd])
 
 
@@ -26,6 +26,7 @@ export function Playlist(props) {
             <ul>
                 <li id="playlistSongs">
                     <p id="topP">{songList[i][0]}</p>
+                    <button onClick={() => handleRemove(i)} id="removeSong">-</button>
                     <p>{songList[i][1]}</p>
                 </li>
             </ul>
@@ -34,6 +35,10 @@ export function Playlist(props) {
 
         }
     }, [songList])
+
+    function handleRemove(songToRemove) {
+        setSongList(songList.filter(song => song !== songList[songToRemove]))
+    }
 
     //get uris list
     function getUriList() {
@@ -79,8 +84,8 @@ export function Playlist(props) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                "uris":getUriList(),
-                'position' : 0,
+                "uris": getUriList(),
+                'position': 0,
             })
         }).then(response => response.json()).then(data => console.log(data))
 
@@ -91,7 +96,7 @@ export function Playlist(props) {
         <div id="playlistContainer">
             <input id="playlistNameInput" type="text" placeholder="Playlist Name"></input>
             {playlistRender}
-            <button onClick={handleSave}>Save to Spotify</button>
+            <button id="saveButton" onClick={handleSave}>Save to Spotify</button>
         </div>
     )
 }

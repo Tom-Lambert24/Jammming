@@ -65,7 +65,6 @@ li button {
   border-radius: 30%;
   color: white;
   font-weight: 900;
-
 }
 
 li button:hover {
@@ -78,7 +77,7 @@ li button:active {
   background-color: rgb(219, 219, 219);
 }
 
-#playlistContainer button {
+#saveButton {
   display: block;
   margin: 0.8rem auto;
   position: sticky;
@@ -137,10 +136,6 @@ input {
   margin-top: 0.3rem;
 }
 
-#playlistSongs p {
-  display: block;
-}
-
 #playlistContainer ul li {
   display: inline-block;
   grid-template-columns: 90% 10%;
@@ -193,6 +188,7 @@ input {
   outline: none;
   position: sticky;
   background-color: rgb(252, 252, 252);
+  z-index: 2;
 }
 
 #search input {
@@ -240,4 +236,21 @@ input {
 
 #topP {
   border-bottom: 0.05rem dotted rgb(54, 54, 54);
+}
+
+#removeSong li button {
+  background-color: red;
+}
+
+#playlistSongs p {
+  display: inline-block;
+  margin: 0.1rem 0;
+  font-size: 1rem;
+}
+
+#playlistContainer ul li {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
