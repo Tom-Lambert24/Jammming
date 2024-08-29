@@ -1,17 +1,28 @@
 
+body {
+  background-color: rgb(193, 176, 187);
+}
+
+header {
+  background-color: rgb(86, 61, 196);
+  justify-content: space-between;
+  display: flex;
+  top: 1rem;
+  position: sticky;
+  margin: 0 7%;
+  border-radius: 5rem;
+}
+
 h1 {
-  text-align: center;
-  background-color: navy;
   color: white;
+  display: inline-block;
+  position: relative;
+  left: 7.5%;
 }
 
 #search {
   text-align: center;
   margin-top: 4%;
-}
-
-#searchInput {
-  margin-bottom: 10px;
 }
 
 #searchResults {
@@ -21,6 +32,9 @@ h1 {
   width: 40%;
   display: inline-block;
   border-radius: 2rem;
+  position: relative;
+  max-height: 30rem;
+  min-height: 7rem;
 }
 
 #playlistContainer {
@@ -30,8 +44,11 @@ h1 {
   display: inline-block;
   border-radius: 2rem;
   text-align: center;
-  top: 1.15rem;
+  top: 8rem;
   position: relative;
+  max-height: 30rem;
+  overflow-y: scroll;
+  min-height: 7rem;
 }
 
 li button {
@@ -44,6 +61,8 @@ li button {
 button {
   display: block;
   margin: 0.5rem auto;
+  position: sticky;
+  bottom: 1rem;
 }
 
 h2 {
@@ -86,4 +105,25 @@ input {
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: 0.1rem solid black;
+}
+
+#login {
+  position: relative;
+  display: inline-block;
+  background-color: white;
+  text-decoration: none;
+  border-radius: 0.2rem;
+  padding: 1rem;
+  margin: 1rem 0.75rem;
+  right: 5%;
+  font-weight: 600;
+
+}
+
+#login:visited {
+  color: black;
+}
+
+#login:hover {
+  background-color: rgb(204, 204, 204);
 }
