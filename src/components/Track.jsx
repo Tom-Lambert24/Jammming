@@ -34,7 +34,7 @@ export function Track(props) {
         for (let i = 0; i < 5; i++) {
             renderCode.push(
                 <li key={"list" + i}>
-                    <p>{namesArray[i]}</p>
+                    <p id="topP">{namesArray[i]}</p>
                     <button id={"button" + i} onClick={() => handleButtonClick(i)}>+</button>
                     <p>{artistArray[i]}</p>
                 </li>

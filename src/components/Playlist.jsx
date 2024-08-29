@@ -25,7 +25,7 @@ export function Playlist(props) {
             setPlaylistRender(prev => [...prev,
             <ul>
                 <li id="playlistSongs">
-                    <p>{songList[i][0]}</p>
+                    <p id="topP">{songList[i][0]}</p>
                     <p>{songList[i][1]}</p>
                 </li>
             </ul>

@@ -71,7 +71,7 @@ function App() {
           <SearchBar token={token} recieveSearch={handleDataFromSearchBar} />
           <section id="listsGrid">
             <div id="searchResults">
-              <h2>Results</h2>
+              <h2>Search Results</h2>
               <Track resultsObject={resultsObject} recieveAddedSong={handleDataFromTrack} />
             </div>
             <Playlist songAdd={songAdd} token={token} />

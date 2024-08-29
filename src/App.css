@@ -60,6 +60,22 @@ li button {
   padding: auto;
   height: 1.5rem;
   width: 1.5rem;
+  background-color: rgba(143, 131, 198, 0.726);
+  border: none;
+  border-radius: 30%;
+  color: white;
+  font-weight: 900;
+
+}
+
+li button:hover {
+  background-color: rgb(248, 248, 248);
+  color: rgb(18, 18, 18)
+}
+
+li button:active {
+  top: 0.58rem;
+  background-color: rgb(219, 219, 219);
 }
 
 #playlistContainer button {
@@ -195,7 +211,7 @@ input {
     background-color: rgba(236, 216, 229, 0.791);
     text-decoration: none;
     border-radius: 0.2rem;
-    padding: 1rem 3rem;
+    padding: 0.7rem 3rem;
     margin: 1rem 0rem;
     right: 5%;
     font-weight: 600;
@@ -220,4 +236,8 @@ input {
 #logout:active {
   left: 1.25rem;
   top: 0.05rem;
+}
+
+#topP {
+  border-bottom: 0.05rem dotted rgb(54, 54, 54);
 }
