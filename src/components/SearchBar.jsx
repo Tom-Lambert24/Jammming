@@ -40,9 +40,7 @@ export function SearchBar(props) {
     return (
         <>
             <div id="search">
-                <label>Song Search</label>
-                <br></br>
-                <input id="searchInput" type="text" onChange={e => { changeHandler(e) }} />
+                <input id="searchInput" type="text" placeholder="Song Search Bar" onChange={e => { changeHandler(e) }} />
             </div>
         </>
     )

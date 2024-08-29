@@ -46,8 +46,6 @@ export function Playlist(props) {
         return uriList
     }
 
-    console.log(JSON.stringify(getUriList()))
-
     //save playlist to spotify
 
     async function handleSave() {
@@ -85,6 +83,7 @@ export function Playlist(props) {
 
     return (
         <div id="playlistContainer">
+            <input id="playlistNameInput" type="text" placeholder="Playlist Name"></input>
             {playlistRender}
             <button onClick={handleSave}>Save to Spotify</button>
         </div>
