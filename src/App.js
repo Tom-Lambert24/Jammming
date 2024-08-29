@@ -10,6 +10,7 @@ function App() {
   const responseType = "token"
   const authEndpoint = "https://accounts.spotify.com/authorize"
 
+  const [userName, setUserName] = useState('')
   const [token, setToken] = useState('')
   const [resultsObject, setResultsObject] = useState({})
   const [songAdd, setSongAdd] = useState('')
@@ -20,12 +21,37 @@ function App() {
     setToken(href.substring(href.indexOf('=') + 1, href.indexOf('&')))
   })
 
+  useEffect(() => {
+    if (token) {
+      document.getElementById("login").style.display = 'none'
+      document.getElementById("welcomeUser").style.display = 'inline-block'
+
+      fetch('https://api.spotify.com/v1/me', {
+        method: 'GET',
+        headers: {
+          'Authorization' : 'Bearer ' + token
+        }
+      }).then(response => response.json()).then(data => {
+        setUserName('Welcome, ' + data.display_name)
+      })
+
+    } else {
+      document.getElementById("login").style.display = 'inline-block'
+      document.getElementById("welcomeUser").style.display = 'none'
+    }
+  }, [token])
+
   function handleDataFromSearchBar(data) {
     setResultsObject(data)
   }
 
   function handleDataFromTrack(data) {
     setSongAdd(data)
+  }
+
+  function handleLogout() {
+    setToken('')
+    window.location.href = 'http://localhost:3000'
   }
 
   return (
@@ -35,6 +61,10 @@ function App() {
         <a id="login" href={`${authEndpoint}?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=${responseType}&scope=playlist-read-private%20playlist-modify-public%20playlist-modify-private`}>
           Login to Spotify
         </a>
+        <div id="welcomeUser">
+          {userName}
+          <button onClick={handleLogout} id="logout">Logout</button>
+        </div>
       </header>
       <body>
         <>
@@ -44,7 +74,7 @@ function App() {
               <h2>Results</h2>
               <Track resultsObject={resultsObject} recieveAddedSong={handleDataFromTrack} />
             </div>
-            <Playlist songAdd={songAdd} token={token}/>
+            <Playlist songAdd={songAdd} token={token} />
           </section>
         </>
       </body>

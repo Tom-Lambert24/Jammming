@@ -144,7 +144,6 @@ input {
   margin: 1rem 0.75rem;
   right: 5%;
   font-weight: 600;
-
 }
 
 #login:visited {
@@ -188,4 +187,37 @@ input {
   text-align: center;
   font-size: 1.5rem;
   background-color: rgb(252, 252, 252);
+}
+
+#welcomeUser {
+    position: relative;
+    display: inline-block;
+    background-color: rgba(236, 216, 229, 0.791);
+    text-decoration: none;
+    border-radius: 0.2rem;
+    padding: 1rem 3rem;
+    margin: 1rem 0rem;
+    right: 5%;
+    font-weight: 600;
+    border-radius: 4rem;
+}
+
+#logout {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  position: relative;
+  left: 1.2rem;
+  font-weight: 550;
+  color: rgb(53, 53, 53);
+}
+
+#logout:hover {
+  background-color: rgb(204, 204, 204);
+  box-shadow: 0.05rem 0.05rem rgb(84, 84, 84);
+}
+
+#logout:active {
+  left: 1.25rem;
+  top: 0.05rem;
 }
