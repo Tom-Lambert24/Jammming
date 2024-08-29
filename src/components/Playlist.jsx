@@ -50,6 +50,8 @@ export function Playlist(props) {
 
     async function handleSave() {
         var playlistID = ''
+        var playlistName = document.getElementById('playlistNameInput').value
+
         await fetch('https://api.spotify.com/v1/users/tomlambert1997/playlists', {
             method: "POST",
             headers: {
@@ -57,8 +59,8 @@ export function Playlist(props) {
                 'Authorization': 'Bearer ' + props.token,
             },
             body: JSON.stringify({
-                'name': 'Test Playlist',
-                'description': 'Test Playlist Description',
+                'name': playlistName,
+                'description': '',
                 'public': false,
             })
         }).then(response => response.json()).then(data => {
