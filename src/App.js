@@ -6,7 +6,9 @@ import { Track } from './components/Track';
 
 function App() {
   const clientID = "36e3f70fe51742af911d9af20b443a96"
-  const redirectURI = "http://localhost:3000/"
+  const redirectURI = "https://tom-lambert24.github.io/PlayLister/"
+
+  //const redirectURI = "http://localhost:3000"
   const responseType = "token"
   const authEndpoint = "https://accounts.spotify.com/authorize"
 
@@ -51,7 +53,8 @@ function App() {
 
   function handleLogout() {
     setToken('')
-    window.location.href = 'http://localhost:3000'
+    window.location.href = 'https://tom-lambert24.github.io/PlayLister/'
+    // window.location.href = 'http://localhost:3000'
   }
 
   return (
