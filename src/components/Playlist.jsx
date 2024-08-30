@@ -87,9 +87,9 @@ export function Playlist(props) {
                 "uris": getUriList(),
                 'position': 0,
             })
-        }).then(response => response.json()).then(data => console.log(data))
+        }).then(response => response.json())
 
-
+        setSongList([])
     }
 
     return (
