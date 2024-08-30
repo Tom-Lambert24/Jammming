@@ -62,7 +62,7 @@ function App() {
           Login to Spotify
         </a>
         <div id="welcomeUser">
-          {userName}
+          <div id="welcomeText">{userName}</div>
           <button onClick={handleLogout} id="logout">Logout</button>
         </div>
       </header>
