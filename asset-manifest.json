@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PlayLister/static/css/main.a68d7ac4.css",
+    "main.js": "/PlayLister/static/js/main.c3f49993.js",
+    "static/js/453.71a3d699.chunk.js": "/PlayLister/static/js/453.71a3d699.chunk.js",
+    "index.html": "/PlayLister/index.html",
+    "main.a68d7ac4.css.map": "/PlayLister/static/css/main.a68d7ac4.css.map",
+    "main.c3f49993.js.map": "/PlayLister/static/js/main.c3f49993.js.map",
+    "453.71a3d699.chunk.js.map": "/PlayLister/static/js/453.71a3d699.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a68d7ac4.css",
+    "static/js/main.c3f49993.js"
+  ]
+}
