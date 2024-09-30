@@ -5,10 +5,10 @@ import React, { useState, useEffect } from 'react';
 import { Track } from './components/Track';
 
 function App() {
-  const clientID = "36e3f70fe51742af911d9af20b443a96"
-  const redirectURI = "https://tom-lambert24.github.io/PlayLister/"
+  
+  //const redirectURI = "https://tom-lambert24.github.io/PlayLister/"
 
-  //const redirectURI = "http://localhost:3000"
+  const redirectURI = "http://localhost:3000/PlayLister"
   const responseType = "token"
   const authEndpoint = "https://accounts.spotify.com/authorize"
 
@@ -16,6 +16,27 @@ function App() {
   const [token, setToken] = useState('')
   const [resultsObject, setResultsObject] = useState({})
   const [songAdd, setSongAdd] = useState('')
+  const [clientID, setClientID] = useState(null)
+
+  useEffect(() => {
+    async function getClientID() {
+        try {
+            const response = await fetch('http://localhost:5000/getClientID'); // Correct URL
+            if (!response.ok) {
+                throw new Error('Failed to fetch client ID');
+            }
+            const data = await response.json();
+            setClientID(data.clientID); // Access the clientID from the JSON response
+        } catch (error) {
+            console.error('Error fetching client ID:', error);
+        }
+    }
+    getClientID();
+}, []);
+
+  useEffect(() => {
+    console.log(clientID)
+  }, [clientID])
 
   useEffect(() => {
     const href = window.location.href
@@ -31,7 +52,7 @@ function App() {
       fetch('https://api.spotify.com/v1/me', {
         method: 'GET',
         headers: {
-          'Authorization' : 'Bearer ' + token
+          'Authorization': 'Bearer ' + token
         }
       }).then(response => response.json()).then(data => {
         setUserName('Welcome, ' + data.display_name)
@@ -53,8 +74,8 @@ function App() {
 
   function handleLogout() {
     setToken('')
-    window.location.href = 'https://tom-lambert24.github.io/PlayLister/'
-    // window.location.href = 'http://localhost:3000'
+    //window.location.href = 'https://tom-lambert24.github.io/PlayLister/'
+    window.location.href = 'http://localhost:3000/PlayLister'
   }
 
   return (
