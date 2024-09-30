@@ -9,7 +9,6 @@ dotenv.config()
 app.use(cors())
 
 const clientID = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIEND_SECRET;
 const redirectURI = 'http://localhost:3000/PlayLister';
 console.log(clientID)
 app.get('/getClientID', (req, res) => {
