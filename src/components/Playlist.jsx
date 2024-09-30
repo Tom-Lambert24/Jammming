@@ -65,7 +65,7 @@ export function Playlist(props) {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + props.token,
+                'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
             },
             body: JSON.stringify({
                 'name': playlistName,
@@ -80,7 +80,7 @@ export function Playlist(props) {
         fetch('https://api.spotify.com/v1/playlists/' + playlistID + '/tracks', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + props.token,
+                'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
