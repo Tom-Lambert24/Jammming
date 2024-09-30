@@ -5,84 +5,113 @@ import React, { useState, useEffect } from 'react';
 import { Track } from './components/Track';
 
 function App() {
-  
-  //const redirectURI = "https://tom-lambert24.github.io/PlayLister/"
-
-  const redirectURI = "http://localhost:3000/PlayLister"
-  const responseType = "token"
-  const authEndpoint = "https://accounts.spotify.com/authorize"
-
-  const [userName, setUserName] = useState('')
-  const [token, setToken] = useState('')
-  const [resultsObject, setResultsObject] = useState({})
-  const [songAdd, setSongAdd] = useState('')
-  const [clientID, setClientID] = useState(null)
+  const redirectURI = "http://localhost:3000/PlayLister";
+  const authEndpoint = "https://accounts.spotify.com/authorize";
+  const [userName, setUserName] = useState('');
+  const [token, setToken] = useState('');
+  const [resultsObject, setResultsObject] = useState({});
+  const [songAdd, setSongAdd] = useState('');
+  const [clientID, setClientID] = useState(null);
 
   useEffect(() => {
     async function getClientID() {
-        try {
-            const response = await fetch('http://localhost:5000/getClientID'); // Correct URL
-            if (!response.ok) {
-                throw new Error('Failed to fetch client ID');
-            }
-            const data = await response.json();
-            setClientID(data.clientID); // Access the clientID from the JSON response
-        } catch (error) {
-            console.error('Error fetching client ID:', error);
+      try {
+        const response = await fetch('http://localhost:5000/getClientID');
+        if (!response.ok) {
+          throw new Error('Failed to fetch client ID');
         }
+        const data = await response.json();
+        setClientID(data.clientID);
+      } catch (error) {
+        console.error('Error fetching client ID:', error);
+      }
     }
     getClientID();
-}, []);
+  }, []);
 
   useEffect(() => {
-    console.log(clientID)
-  }, [clientID])
-
-  useEffect(() => {
-    const href = window.location.href
-
-    setToken(href.substring(href.indexOf('=') + 1, href.indexOf('&')))
-  })
+    const href = window.location.href;
+    const code = new URLSearchParams(window.location.search).get('code');
+    
+    if (code) {
+      // Call backend to exchange the authorization code for an access token
+      fetch('http://localhost:5000/callback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.access_token) {
+          setToken(data.access_token);
+          window.history.replaceState({}, document.title, window.location.pathname); // Clear the code from URL
+        }
+      })
+      .catch(error => console.error('Error fetching access token:', error));
+    }
+  }, []);
 
   useEffect(() => {
     if (token) {
-      document.getElementById("login").style.display = 'none'
-      document.getElementById("welcomeUser").style.display = 'inline-block'
+      document.getElementById("login").style.display = 'none';
+      document.getElementById("welcomeUser").style.display = 'inline-block';
 
       fetch('https://api.spotify.com/v1/me', {
         method: 'GET',
         headers: {
-          'Authorization': 'Bearer ' + token
-        }
+          'Authorization': 'Bearer ' + token,
+        },
       }).then(response => response.json()).then(data => {
-        setUserName('Welcome, ' + data.display_name)
-      })
-
+        setUserName('Welcome, ' + data.display_name);
+      });
     } else {
-      document.getElementById("login").style.display = 'inline-block'
-      document.getElementById("welcomeUser").style.display = 'none'
+      document.getElementById("login").style.display = 'inline-block';
+      document.getElementById("welcomeUser").style.display = 'none';
     }
-  }, [token])
+  }, [token]);
 
   function handleDataFromSearchBar(data) {
-    setResultsObject(data)
+    setResultsObject(data);
   }
 
   function handleDataFromTrack(data) {
-    setSongAdd(data)
+    setSongAdd(data);
   }
 
   function handleLogout() {
-    setToken('')
-    //window.location.href = 'https://tom-lambert24.github.io/PlayLister/'
-    window.location.href = 'http://localhost:3000/PlayLister'
+    setToken('');
+    window.location.href = 'http://localhost:3000/PlayLister';
+  }
+
+  function handleLogin() {
+    var state = generateRandomString(16);
+    var scope = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
+
+    const params = new URLSearchParams({
+      response_type: 'code',
+      client_id: clientID,
+      scope: scope,
+      redirect_uri: redirectURI,
+      state: state,
+    });
+
+    // Redirect the user to Spotify for login
+    window.location.href = `${authEndpoint}?${params.toString()}`;
+  }
+
+  const generateRandomString = (length) => {
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const values = crypto.getRandomValues(new Uint8Array(length));
+    return values.reduce((acc, x) => acc + possible[x % possible.length], "");
   }
 
   return (
     <>
       <header>
         <h1>PlayLister</h1>
-        <a id="login" href={`${authEndpoint}?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=${responseType}&scope=playlist-read-private%20playlist-modify-public%20playlist-modify-private`}>
+        <a id="login" onClick={handleLogin}>
           Login to Spotify
         </a>
         <div id="welcomeUser">

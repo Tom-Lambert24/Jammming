@@ -1,16 +1,28 @@
 const express = require('express');
-const dotenv = require('dotenv')
-const cors = require('cors')
+const dotenv = require('dotenv');
+const cors = require('cors');
+const querystring = require('querystring');
+const axios = require('axios');
+const helmet = require('helmet')
 
 const app = express();
 const port = 5000;
-dotenv.config()
+dotenv.config();
 
-app.use(cors())
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+    credentials: true
+};
+app.use(cors());
+app.use(express.json());
+app.use(helmet())
 
 const clientID = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
 const redirectURI = 'http://localhost:3000/PlayLister';
-console.log(clientID)
+console.log(clientID);
+
 app.get('/getClientID', (req, res) => {
     try {
         res.status(200).json({ clientID }); // Send as a JSON object
@@ -20,6 +32,39 @@ app.get('/getClientID', (req, res) => {
     }
 });
 
+app.post('/callback', async function(req, res) {
+    const code = req.body.code;
+
+    if (!code) {
+        return res.status(400).send('No code provided');
+    }
+
+    try {
+        const authOptions = {
+            url: 'https://accounts.spotify.com/api/token',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + Buffer.from(`${clientID}:${client_secret}`).toString('base64'),
+            },
+            data: querystring.stringify({
+                code: code,
+                redirect_uri: redirectURI,
+                grant_type: 'authorization_code',
+            }),
+        };
+
+        const response = await axios(authOptions);
+        console.log('Access Token:', response.data.access_token);
+        
+        // Return the access token to the frontend
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching access token:', error);
+        res.status(500).send('Error retrieving access token');
+    }
+});
+
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
