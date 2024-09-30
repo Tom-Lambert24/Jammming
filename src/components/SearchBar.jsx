@@ -7,12 +7,12 @@ export function SearchBar(props) {
     async function changeHandler(e) {
 
         var search = {}
-        if (localStorage.getItem('access_token')) {
+        if (props.token) {
             if (e.target.value) {
                 await fetch(`https://api.spotify.com/v1/search?q=${e.target.value}&type=track&limit=5`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': ' Bearer ' + localStorage.getItem('access_token')
+                        'Authorization': ' Bearer ' + props.token
                     }
                 }
                 ).then(response => response.json()).then(data => {
@@ -22,7 +22,7 @@ export function SearchBar(props) {
                 await fetch(search, {
                     method: 'GET',
                     headers: {
-                        'Authorization': ' Bearer ' + localStorage.getItem('access_token')
+                        'Authorization': ' Bearer ' + props.token
                     }
                 }).then(response => response.json()).then(
                     data => {
