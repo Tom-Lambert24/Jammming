@@ -10,7 +10,7 @@ const port = 5000;
 dotenv.config();
 
 const corsOptions = {
-    origin: 'https://tom-lambert24.github.io:3000',
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
     credentials: true
 };
@@ -20,7 +20,7 @@ app.use(helmet())
 
 const clientID = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
-const redirectURI = 'https://tom-lambert24.github.io/PlayLister/';
+const redirectURI = 'http://localhost:3000/PlayLister';
 console.log(clientID);
 
 app.get('/getClientID', (req, res) => {
