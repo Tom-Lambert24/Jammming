@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { Track } from './components/Track';
 
 function App() {
-  const redirectURI = "http://localhost:3000/PlayLister";
+  const redirectURI = "https://tom-lambert24.github.io/PlayLister";
   const authEndpoint = "https://accounts.spotify.com/authorize";
   const [userName, setUserName] = useState('');
   const [token, setToken] = useState('');
@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     async function getClientID() {
       try {
-        const response = await fetch('http://localhost:5000/getClientID');
+        const response = await fetch('https://tom-lambert24.github.io:5000/getClientID');
         if (!response.ok) {
           throw new Error('Failed to fetch client ID');
         }
@@ -35,7 +35,7 @@ function App() {
     
     if (code) {
       // Call backend to exchange the authorization code for an access token
-      fetch('http://localhost:5000/callback', {
+      fetch('https://tom-lambert24.github.io:5000/callback', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ function App() {
 
   function handleLogout() {
     setToken('');
-    window.location.href = 'http://localhost:3000/PlayLister';
+    window.location.href = 'https://tom-lambert24.github.io:3000/PlayLister';
   }
 
   function handleLogin() {
