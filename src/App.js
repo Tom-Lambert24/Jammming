@@ -45,6 +45,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         if (data.access_token) {
+          console.log("access token data:" + data.access_token)
           setToken(data.access_token);
           window.history.replaceState({}, document.title, window.location.pathname); // Clear the code from URL
         }

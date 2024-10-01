@@ -10,11 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 dotenv.config();
 
-const corsOptions = {
-    origin: 'https://playlister-portfolio-1c5c28cc9523.herokuapp.com',
-    methods: ['GET', 'POST'],
-    credentials: true
-};
+
 app.use(cors());
 app.use(express.json());
 app.use(helmet())
