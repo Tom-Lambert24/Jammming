@@ -99,6 +99,7 @@ function App() {
     });
 
     // Redirect the user to Spotify for login
+    console.log(`${authEndpoint}?${params.toString()}`)
     window.location.href = `${authEndpoint}?${params.toString()}`;
   }
 
