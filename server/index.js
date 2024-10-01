@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 dotenv.config();
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://playlister-portfolio-1c5c28cc9523.herokuapp.com:3000',
     methods: ['GET', 'POST'],
     credentials: true
 };
@@ -22,7 +22,7 @@ app.use(express.static(path.resolve(__dirname, "../build")))
 
 const clientID = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
-const redirectURI = 'http://localhost:3000/PlayLister';
+const redirectURI = 'https://playlister-portfolio-1c5c28cc9523.herokuapp.com/PlayLister';
 console.log(clientID);
 
 app.get('/getClientID', (req, res) => {
@@ -72,5 +72,5 @@ app.get('/*', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server running at port:${PORT}`);
 });
