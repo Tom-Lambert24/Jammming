@@ -87,6 +87,7 @@ function App() {
   }
 
   function handleLogin() {
+    console.log('handle login ran')
     var state = generateRandomString(16);
     var scope = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
 
