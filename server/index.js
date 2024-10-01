@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 dotenv.config();
 
 const corsOptions = {
-    origin: 'https://playlister-portfolio-1c5c28cc9523.herokuapp.com:3000',
+    origin: 'https://playlister-portfolio-1c5c28cc9523.herokuapp.com',
     methods: ['GET', 'POST'],
     credentials: true
 };
