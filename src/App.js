@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { Track } from './components/Track';
 
 function App() {
-  const redirectURI = "https://playlister-portfolio-1c5c28cc9523.herokuapp.com/";
+  const redirectURI = "https://playlister-portfolio-1c5c28cc9523.herokuapp.com/PlayLister";
   const authEndpoint = "https://accounts.spotify.com/authorize";
   const [userName, setUserName] = useState('');
   const [token, setToken] = useState('');
