@@ -23,7 +23,7 @@ app.use(express.static(path.resolve(__dirname, "../build")))
 
 const clientID = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
-const redirectURI = 'https://playlister-portfolio-1c5c28cc9523.herokuapp.com/callback';
+const redirectURI = 'https://playlister-portfolio-1c5c28cc9523.herokuapp.com';
 console.log(clientID);
 
 app.get('/getClientID', (req, res) => {
