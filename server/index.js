@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const querystring = require('querystring');
 const axios = require('axios');
-const helmet = require('helmet')
 const path = require('path')
 
 const app = express();
@@ -18,7 +17,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
-app.use(helmet())
 app.use(express.static(path.resolve(__dirname, "../build")))
 
 const clientID = process.env.CLIENT_ID;
